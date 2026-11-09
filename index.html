@@ -202,6 +202,16 @@ summary:hover .anel,details[open] summary .anel{stroke-dasharray:50 20}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.logo,.anel,.portais a{transition:none}}
 
+/* o livro real e as redes (09/11/2026) */
+.capa-livro{display:flex;justify-content:center;padding:28px;background:var(--sup)}
+.capa-livro img{width:min(300px,70%);height:auto;border-radius:4px;box-shadow:0 22px 50px rgba(0,0,0,.6);transition:transform .25s}
+.capa-livro:hover img{transform:translateY(-4px)}
+.redes-sociais{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:20px}
+.redes-sociais a{font-family:var(--mono);font-size:14px;color:var(--texto);text-decoration:none;border:1px solid var(--linha);border-radius:999px;padding:8px 16px}
+.redes-sociais a:hover{border-color:var(--verde)}
+.redes-sociais .rs-principal{background:var(--verde);border-color:var(--verde);color:#fff;font-size:16px;padding:12px 24px}
+.redes-sociais .rs-principal:hover{background:var(--verde-claro)}
+
 </style>
 </head>
 <body>
@@ -293,17 +303,14 @@ summary:hover .anel,details[open] summary .anel{stroke-dasharray:50 20}
       <div class="texto">
         <div class="oficio">livro</div>
         <h3>Um autor tinha um conto e queria ver aquilo virar livro.</h3>
-        <p>Leitura beta, duas rodadas de revisão, a ilustradora escolhida entre quatro, o livro em PDF e EPUB, a página na web e 13 peças para quatro semanas de divulgação.</p>
+        <p><b>Entre Orquídeas e Robôs</b>, de Paulo Pontes. Leitura beta, duas rodadas de revisão, a ilustradora escolhida entre quatro, o livro em PDF e EPUB, a página na web e 13 peças para quatro semanas de divulgação.</p>
         <dl class="ficha">
-          <dt>fase</dt><dd><span class="fase ok">publicado</span></dd>
+          <dt>fase</dt><dd><span class="fase ok">publicado</span> <a href="https://entre-orquideas-e-robos.pages.dev/" target="_blank" rel="noopener">ler o livro</a></dd>
           <dt>quando</dt><dd>25/08 a 23/10/2026</dd>
           <dt>com</dt><dd>Python para o PDF e o EPUB, Cloudflare Pages</dd>
         </dl>
       </div>
-      <div class="midia livro" aria-hidden="true">
-        <div class="pagina esq"><div class="ilu"></div><i></i><i></i><i></i></div>
-        <div class="pagina dir"><div class="cap"></div><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      </div>
+      <a class="midia capa-livro" href="https://entre-orquideas-e-robos.pages.dev/" target="_blank" rel="noopener"><img src="midia/livro-entre-orquideas-e-robos.jpg" alt="Capa do livro Entre Orquídeas e Robôs, de Paulo Pontes: um coração mecânico ligado por cabos, sobre números binários" width="600" height="960" loading="lazy"></a>
     </div>
   </article>
 
@@ -352,6 +359,11 @@ summary:hover .anel,details[open] summary .anel{stroke-dasharray:50 20}
     <div>
       <div class="rotulo"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>Quem faz</div>
       <p class="bio">Jean Prestes estudou medicina, tocou violão na rua pelo Nordeste, escreveu um romance e anos de textos de venda. Hoje produz com várias IAs ao mesmo tempo, na Chapada Diamantina.</p>
+      <div class="redes-sociais">
+        <a class="rs-principal" href="https://www.linkedin.com/in/jean-prestes-914943120" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">→</span></a>
+        <a href="https://www.instagram.com/jeandsprestes/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@jeandsprestes" target="_blank" rel="noopener">YouTube</a>
+      </div>
       <div class="portas">
         <details>
           <summary><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>O que eu leio todo dia</summary>

@@ -197,6 +197,16 @@ summary:hover .anel,details[open] summary .anel{stroke-dasharray:50 20}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.logo,.anel,.portais a{transition:none}}
 
+/* o livro real e as redes (09/11/2026) */
+.capa-livro{display:flex;justify-content:center;padding:28px;background:var(--sup)}
+.capa-livro img{width:min(300px,70%);height:auto;border-radius:4px;box-shadow:0 22px 50px rgba(0,0,0,.6);transition:transform .25s}
+.capa-livro:hover img{transform:translateY(-4px)}
+.redes-sociais{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:20px}
+.redes-sociais a{font-family:var(--mono);font-size:14px;color:var(--texto);text-decoration:none;border:1px solid var(--linha);border-radius:999px;padding:8px 16px}
+.redes-sociais a:hover{border-color:var(--verde)}
+.redes-sociais .rs-principal{background:var(--verde);border-color:var(--verde);color:#fff;font-size:16px;padding:12px 24px}
+.redes-sociais .rs-principal:hover{background:var(--verde-claro)}
+
 </style>
 </head>
 <body>
