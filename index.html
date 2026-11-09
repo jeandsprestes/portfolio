@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jean Prestes · multiprodutor com IA</title>
+<meta name="description" content="Jogo, conteúdo para redes, livro, aplicativo e dados, feitos por uma pessoa com várias IAs ao mesmo tempo.">
+<meta name="theme-color" content="#05060B">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jean Prestes · multiprodutor com IA">
+<meta property="og:description" content="Jogo, conteúdo para redes, livro, aplicativo e dados, feitos por uma pessoa com várias IAs ao mesmo tempo.">
+<meta property="og:image" content="https://jeandsprestes.github.io/portfolio/midia/jean-prestes.jpg">
+<meta property="og:url" content="https://jeandsprestes.github.io/portfolio/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23099268' stroke-width='3.2' stroke-linecap='round' stroke-dasharray='58 12' transform='rotate(-70 16 16)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vazio:#05060B; --sup:#0C0E18; --sup2:#131628; --linha:#1E2238;
+  --texto:#E6E8F0; --apagado:#8A90A6; --verde:#099268; --verde-claro:#0BAA7A;
+  --titulo:'Syne',system-ui,sans-serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--vazio);color:var(--texto);font-family:var(--sans);font-size:17px;line-height:1.6;position:relative;overflow-x:hidden}
+/* o cosmo: poucas estrelas, só CSS */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.55;
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 50%,transparent 51%),
+   radial-gradient(1px 1px at 78% 9%,#cfd6ff 50%,transparent 51%),
+   radial-gradient(1.5px 1.5px at 64% 42%,#fff 50%,transparent 51%),
+   radial-gradient(1px 1px at 33% 71%,#dfe4ff 50%,transparent 51%),
+   radial-gradient(1px 1px at 88% 66%,#fff 50%,transparent 51%),
+   radial-gradient(1px 1px at 22% 92%,#cfd6ff 50%,transparent 51%),
+   radial-gradient(1.5px 1.5px at 92% 31%,#fff 50%,transparent 51%),
+   radial-gradient(1px 1px at 47% 24%,#fff 50%,transparent 51%)}
+body>*{position:relative;z-index:1}
+a{color:var(--verde-claro);text-underline-offset:3px}
+img,video,svg{display:block;max-width:100%}
+.miolo{max-width:1120px;margin:0 auto;padding:0 16px}
+
+/* a logo: o círculo verde aberto */
+.logo,.anel{fill:none;stroke:var(--verde);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:58 12;transform:rotate(-70deg);transform-origin:50% 50%;transition:stroke-dasharray .25s ease}
+.anel{width:14px;height:14px;flex:none}
+
+/* barra */
+.barra{position:sticky;top:0;z-index:5;background:rgba(5,6,11,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+.barra-in{display:flex;align-items:center;justify-content:space-between;gap:12px;height:58px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--texto);min-width:0}
+.marca .logo{width:26px;height:26px;flex:none}
+.marca:hover .logo{stroke-dasharray:50 20}
+.nome{font-family:var(--titulo);font-weight:600;font-size:17px;white-space:nowrap}
+.papel{font-family:var(--mono);font-size:12px;color:var(--apagado);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barra-zap{font-family:var(--mono);font-size:13px;text-decoration:none;border:1px solid var(--verde);color:var(--verde-claro);padding:6px 12px;border-radius:999px;white-space:nowrap}
+.barra-zap:hover{background:var(--verde);color:#fff}
+
+.rotulo{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--verde-claro)}
+
+/* 1. contexto */
+.contexto{padding:88px 0 72px}
+.contexto h1{font-family:var(--titulo);font-weight:600;font-size:clamp(30px,4.6vw,56px);line-height:1.08;letter-spacing:-.01em;max-width:18em;margin-top:22px}
+.dados{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
+.dado{background:var(--sup);border:1px solid var(--linha);border-radius:14px;padding:22px 22px 24px}
+.dado strong{display:block;font-family:var(--titulo);font-weight:600;font-size:clamp(34px,4vw,48px);line-height:1;color:var(--verde-claro);margin-bottom:14px;white-space:nowrap}
+.dado strong i{font-style:normal;color:var(--apagado);font-size:.6em;vertical-align:.15em}
+.dado span{color:var(--texto);font-size:16px}
+.fonte{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--apagado)}
+.texto-corrido{max-width:44em;margin-top:44px}
+.texto-corrido p{font-size:clamp(18px,1.9vw,20px);line-height:1.62}
+.texto-corrido p+p{margin-top:18px}
+
+/* 2. produções */
+.producoes{padding:24px 0 24px;border-top:1px solid var(--linha)}
+.producoes>.miolo{padding-top:64px}
+.titulo-sec{font-family:var(--titulo);font-weight:500;font-size:clamp(24px,3vw,34px);line-height:1.2;max-width:24em;margin-top:18px}
+.portais{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.portais a{font-family:var(--mono);font-size:13px;color:var(--texto);text-decoration:none;border:1px solid var(--linha);border-radius:999px;padding:8px 16px;transition:border-color .2s}
+.portais a:hover{border-color:var(--verde)}
+
+.bloco{padding:56px 0}
+.bloco+.bloco{border-top:1px solid var(--linha)}
+.bloco-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:48px;align-items:center}
+.bloco.inverte .texto{order:2}
+.oficio{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--verde-claro);border:1px solid var(--verde);border-radius:999px;padding:3px 12px}
+.bloco h3{font-family:var(--titulo);font-weight:600;font-size:clamp(23px,2.6vw,30px);line-height:1.2;margin:16px 0 14px}
+.bloco p{color:var(--texto)}
+.ficha{margin-top:20px;font-family:var(--mono);font-size:13px;line-height:1.6;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;color:var(--apagado)}
+.ficha dd{color:var(--texto)}
+.fase{display:inline-block;border-radius:999px;padding:1px 10px;margin-right:8px;font-size:12px}
+.fase.ok{background:var(--verde);color:#fff}
+.fase.dev{border:1px solid var(--verde);color:var(--verde-claro)}
+.fase.ideia{border:1px dashed var(--apagado);color:var(--texto)}
+.midia{background:var(--sup);border:1px solid var(--linha);border-radius:16px;overflow:hidden}
+.midia video{width:100%;height:auto;background:#000}
+.celulares{display:flex;align-items:center;background:#14161b}
+.celulares video{background:#14161b}
+.celulares .largo{flex:2.44;min-width:0}
+.celulares .estreito{flex:1;min-width:0}
+.livro{display:flex;justify-content:center;gap:0;padding:34px 20px;perspective:1400px}
+.pagina{width:44%;max-width:230px;aspect-ratio:2/3;background:#ECEBE6;padding:9% 8%;display:flex;flex-direction:column;gap:7px;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.pagina.esq{transform:rotateY(8deg);transform-origin:right;border-right:1px solid #cfccc3}
+.pagina.dir{transform:rotateY(-8deg);transform-origin:left}
+.pagina i{display:block;height:5px;background:#c9c6bd;border-radius:3px}
+.pagina i:nth-child(5n){width:72%}
+.pagina i:nth-child(7n){width:86%}
+.pagina .ilu{flex:1;min-height:40%;border-radius:2px;margin-bottom:6px;background:repeating-linear-gradient(135deg,rgba(9,146,104,.55) 0 2px,transparent 2px 7px)}
+.pagina .cap{height:9px;width:50%;background:var(--verde);opacity:.7;margin-bottom:6px}
+.planilha{font-family:var(--mono);font-size:13px}
+.planilha .lin{display:grid;grid-template-columns:150px 1fr 84px;align-items:center;border-top:1px solid var(--linha);min-height:40px}
+.planilha .lin:first-child{border-top:0;background:var(--sup2);color:var(--apagado)}
+.planilha .lin>*{padding:6px 12px}
+.planilha .bar{height:12px;background:var(--verde);padding:0;margin:0 10px;border-radius:2px}
+.planilha .n{text-align:right}
+.planilha .rodape{padding:10px 12px;border-top:1px solid var(--linha);color:var(--apagado);font-size:12px}
+
+/* 3. no ar */
+.noar{padding:72px 0;border-top:1px solid var(--linha)}
+.manchetes{list-style:none;margin-top:24px}
+.manchetes li{display:grid;grid-template-columns:120px 1fr auto;gap:18px;align-items:baseline;padding:18px 0;border-top:1px solid var(--linha)}
+.manchetes li:last-child{border-bottom:1px solid var(--linha)}
+.manchetes time{font-family:var(--mono);font-size:13px;color:var(--apagado)}
+.manchetes .h{font-family:var(--titulo);font-weight:500;font-size:clamp(18px,2vw,22px);line-height:1.3}
+.manchetes a{font-family:var(--mono);font-size:13px;white-space:nowrap;text-decoration:none}
+.manchetes a:hover{text-decoration:underline}
+
+/* 4. quem */
+.quem{padding:72px 0;border-top:1px solid var(--linha)}
+.quem-in{display:grid;grid-template-columns:240px 1fr;gap:44px;align-items:start}
+.quem img{width:240px;height:auto;aspect-ratio:4/5;object-fit:cover;filter:grayscale(1) contrast(1.05);border-radius:16px}
+.bio{font-size:clamp(19px,2vw,22px);line-height:1.5;margin-top:16px;max-width:30em}
+.portas{margin-top:30px;display:grid;gap:12px}
+details{border:1px solid var(--linha);border-radius:14px;background:var(--sup)}
+details[open]{background:var(--sup2)}
+summary{cursor:pointer;list-style:none;padding:16px 18px;font-family:var(--mono);font-size:14px;display:flex;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-left:auto;font-size:18px;line-height:1;color:var(--verde-claro)}
+details[open] summary::after{content:"−"}
+summary:hover .anel,details[open] summary .anel{stroke-dasharray:50 20}
+.dentro{padding:4px 18px 22px;font-size:16px}
+.dentro p+p,.dentro p+ol,.dentro ol+p{margin-top:12px}
+.noticias{list-style:none;margin-top:12px}
+.noticias li{padding:10px 0;border-top:1px solid var(--linha);display:grid;grid-template-columns:110px 1fr;gap:12px}
+.noticias .tag{font-family:var(--mono);font-size:12px;color:var(--apagado)}
+.noticias a{color:var(--texto);text-decoration:none}
+.noticias a:hover{color:var(--verde-claro)}
+.conf{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:8px;vertical-align:-1px;border:1.5px solid var(--verde-claro)}
+.conf.fato{background:var(--verde-claro)}
+.conf.provavel{border-style:dashed}
+.conf.hipotese{border-style:dotted}
+.funil{list-style:none;margin-top:14px;counter-reset:f}
+.funil li{counter-increment:f;display:grid;grid-template-columns:28px 160px 1fr;gap:10px;padding:9px 0;border-top:1px solid var(--linha);font-size:15px}
+.funil li::before{content:counter(f);font-family:var(--mono);font-size:12px;color:var(--verde-claro);padding-top:2px}
+.funil b{font-weight:500}
+.funil .quem-faz{font-family:var(--mono);font-size:12px;color:var(--apagado);padding-top:2px}
+.ir{display:inline-flex;gap:8px;margin-top:18px;font-family:var(--mono);font-size:14px;color:#fff;background:var(--verde);text-decoration:none;padding:11px 18px;border-radius:999px}
+.ir:hover{background:var(--verde-claro)}
+
+/* fim */
+.fim{border-top:1px solid var(--linha);padding:80px 0 40px;background:radial-gradient(60% 80% at 50% 0%,rgba(9,146,104,.12),transparent 70%)}
+.fim .logo.grande{width:56px;height:56px}
+.fim p{font-family:var(--titulo);font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1.15;margin-top:22px;max-width:16em}
+.zap{display:inline-block;margin-top:28px;font-family:var(--mono);font-size:15px;background:var(--verde);color:#fff;text-decoration:none;padding:14px 24px;border-radius:999px}
+.zap:hover{background:var(--verde-claro)}
+.pe{margin-top:60px;font-family:var(--mono);font-size:11px;color:var(--apagado)}
+
+/* escola */
+.voltar{font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--texto);display:inline-flex;align-items:center;gap:10px;border:1px solid var(--linha);border-radius:999px;padding:6px 14px 6px 8px}
+.voltar:hover{border-color:var(--verde)}
+.esc-topo{padding:72px 0 40px}
+.esc-topo h1{font-family:var(--titulo);font-weight:600;font-size:clamp(34px,5vw,60px);line-height:1.05;margin-top:20px}
+.esc-topo p{font-size:clamp(18px,1.9vw,20px);max-width:40em;margin-top:20px}
+.premissa{margin-top:32px;border:1px solid var(--verde);border-radius:16px;padding:22px 24px;max-width:46em;background:rgba(9,146,104,.07)}
+.premissa b{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--verde-claro);display:block;margin-bottom:8px}
+.depto{padding:48px 0;border-top:1px solid var(--linha)}
+.depto h2{font-family:var(--titulo);font-weight:600;font-size:clamp(24px,2.8vw,32px);margin-top:14px}
+.depto>.miolo>p{color:var(--apagado);margin-top:6px;max-width:40em}
+.fichas{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:24px}
+.ficha-cat{background:var(--sup);border:1px solid var(--linha);border-radius:14px;padding:18px 18px 34px;position:relative}
+.ficha-cat::after{content:"";position:absolute;left:50%;bottom:12px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;border:1px solid var(--linha)}
+.ficha-cat .cod{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;color:var(--verde-claro)}
+.ficha-cat .sit{color:var(--apagado);border:1px solid var(--linha);border-radius:999px;padding:0 8px;white-space:nowrap}
+.ficha-cat .sit.curso{border-color:var(--verde);color:var(--verde-claro)}
+.ficha-cat h3{font-family:var(--sans);font-weight:500;font-size:17px;line-height:1.35;margin:12px 0 6px;padding-top:10px;border-top:3px double var(--linha)}
+.ficha-cat p{font-size:15px;color:var(--apagado)}
+.ficha-cat.rascunho{border-style:dashed;background:repeating-linear-gradient(0deg,transparent 0 23px,rgba(138,144,166,.08) 23px 24px),repeating-linear-gradient(90deg,transparent 0 23px,rgba(138,144,166,.08) 23px 24px),var(--sup)}
+
+@media (max-width:860px){
+  .dados{grid-template-columns:1fr}
+  .bloco{padding:44px 0}
+  .bloco-in{grid-template-columns:1fr;gap:26px}
+  .bloco.inverte .texto{order:0}
+  .quem-in{grid-template-columns:1fr;gap:24px}
+  .quem img{width:180px}
+  .manchetes li{grid-template-columns:1fr;gap:4px}
+  .funil li{grid-template-columns:24px 1fr}
+  .funil li .quem-faz{grid-column:2}
+  .planilha .lin{grid-template-columns:116px 1fr 76px}
+  .noticias li{grid-template-columns:1fr;gap:2px}
+  .papel{display:none}
+  .contexto{padding:56px 0 52px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.logo,.anel,.portais a{transition:none}}
+
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="miolo barra-in">
+    <a class="marca" href="#topo" aria-label="Jean Prestes, início">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>
+      <span class="nome">Jean Prestes</span>
+      <span class="papel">multiprodutor com IA</span>
+    </a>
+    <a class="barra-zap" href="https://wa.me/5577981116584" target="_blank" rel="noopener">conversar</a>
+  </div>
+</header>
+
+<main id="topo">
+
+<section class="contexto">
+  <div class="miolo">
+    <div class="rotulo"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>A IA em 2026</div>
+    <h1>A IA já resolve sozinha boa parte das tarefas de computador.</h1>
+
+    <div class="dados">
+      <div class="dado">
+        <strong>88%</strong>
+        <span>das organizações dizem já usar IA.</span>
+      </div>
+      <div class="dado">
+        <strong>12% <i>→</i> 66%</strong>
+        <span>foi o salto no acerto de agentes de IA em tarefas reais de computador, usando navegador, planilha e outros programas sozinhos.</span>
+      </div>
+      <div class="dado">
+        <strong>7 meses</strong>
+        <span>é o tempo em que dobra, desde 2019, o tamanho das tarefas de programação que a IA consegue completar, medido pelas horas que uma pessoa levaria para fazê-las.</span>
+      </div>
+    </div>
+    <p class="fonte">Fontes: <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener">AI Index 2026, Universidade Stanford</a> (os dois primeiros números; o teste dos agentes se chama OSWorld) e <a href="https://arxiv.org/abs/2503.14499" target="_blank" rel="noopener">METR, 2025</a> (o terceiro).</p>
+
+    <div class="texto-corrido">
+      <p>Ela ainda erra, e o erro de uma IA costuma parecer certo para quem não conhece a área. Quem coordena várias IAs num projeto escolhe a ferramenta de cada etapa, divide o trabalho entre os modelos e percebe quando um deles errou no assunto que está sendo feito. Num mesmo mês, esse assunto pode ser educação, saúde, turismo ou finanças.</p>
+      <p>Por isso esse trabalho rende mais nas mãos de quem já passou por muitos ofícios. A escritora Emilie Wapnick chamou essas pessoas de multipotenciais, numa palestra TED de 2015, e apontou três forças que elas costumam ter: juntar ideias de áreas distantes, aprender rápido e se adaptar. Quando as IAs assumem a parte repetida de cada ofício, pesa mais em quantos ofícios a pessoa sabe reconhecer um trabalho bem feito.</p>
+    </div>
+  </div>
+</section>
+
+<section class="producoes" id="producoes">
+  <div class="miolo">
+    <div class="rotulo"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>Produções</div>
+    <h2 class="titulo-sec">Cinco trabalhos de agosto a novembro de 2026, cada um num ofício, feitos por uma pessoa com várias IAs.</h2>
+    <nav class="portais" aria-label="Produções">
+      <a href="#jogo">jogo</a><a href="#redes">redes</a><a href="#livro">livro</a><a href="#app">aplicativo</a><a href="#dados">dados</a>
+    </nav>
+  </div>
+
+  <article class="bloco" id="jogo">
+    <div class="miolo bloco-in">
+      <div class="texto">
+        <div class="oficio">jogo educativo</div>
+        <h3>Fazer criança querer estudar matemática e português depois da aula.</h3>
+        <p><b>Astrokdok</b> é um jogo de navegador com 18 missões, cada uma num lugar real do mundo. Cada missão tem três aulas curtas (reforço escolar, astronomia e a história do lugar), um desafio e um minijogo. Roda no celular e, depois da primeira visita, funciona sem internet.</p>
+        <dl class="ficha">
+          <dt>fase</dt><dd><span class="fase ok">no ar</span> <a href="https://jeandsprestes.github.io/astrokdok/" target="_blank" rel="noopener">jogar agora</a> · <a href="https://jeandsprestes.github.io/astrokdok/pagina/" target="_blank" rel="noopener">página do jogo</a></dd>
+          <dt>quando</dt><dd>29/09 a 05/11/2026, seis versões publicadas</dd>
+          <dt>com</dt><dd>Claude Code, JavaScript, GitHub Pages</dd>
+        </dl>
+      </div>
+      <div class="midia"><video src="midia/astrokdok-apresentacao.mp4" poster="midia/astrokdok-apresentacao.jpg" muted loop playsinline controls preload="metadata" aria-label="Apresentação do Astrokdok: a tela de título, uma aula, um desafio, dois minijogos e a missão cumprida"></video></div>
+    </div>
+  </article>
+
+  <article class="bloco inverte" id="redes">
+    <div class="miolo bloco-in">
+      <div class="texto">
+        <div class="oficio">Módulo de Social Media</div>
+        <h3>Uma hospedagem tinha fotos e vídeos brutos e ninguém para transformar aquilo em posts.</h3>
+        <p>O cliente manda fotos e vídeos do jeito que estão. Uma IA separa as melhores fotos, outra escreve o roteiro e as legendas, o computador monta cada peça no formato da rede e uma terceira IA confere a imagem; se ela reprovar, a peça volta ao roteiro. O cliente acompanha as peças e manda material novo por um portal na web.</p>
+        <dl class="ficha">
+          <dt>fase</dt><dd><span class="fase ok">em uso</span></dd>
+          <dt>quando</dt><dd>desde setembro de 2026, 16 peças no primeiro ciclo</dd>
+          <dt>com</dt><dd>três modelos de IA, Python, Chrome para a imagem, ffmpeg para o vídeo, Cloudflare para o portal</dd>
+        </dl>
+      </div>
+      <div class="midia"><video src="midia/social-media-como-funciona.mp4" poster="midia/social-media-como-funciona.jpg" muted loop playsinline controls preload="metadata" aria-label="Como funciona o Módulo de Social Media, em seis passos, com carrosséis e um vídeo vertical de verdade"></video></div>
+    </div>
+  </article>
+
+  <article class="bloco" id="livro">
+    <div class="miolo bloco-in">
+      <div class="texto">
+        <div class="oficio">livro</div>
+        <h3>Um autor tinha um conto e queria ver aquilo virar livro.</h3>
+        <p>Leitura beta, duas rodadas de revisão, a ilustradora escolhida entre quatro, o livro em PDF e EPUB, a página na web e 13 peças para quatro semanas de divulgação.</p>
+        <dl class="ficha">
+          <dt>fase</dt><dd><span class="fase ok">publicado</span></dd>
+          <dt>quando</dt><dd>25/08 a 23/10/2026</dd>
+          <dt>com</dt><dd>Python para o PDF e o EPUB, Cloudflare Pages</dd>
+        </dl>
+      </div>
+      <div class="midia livro" aria-hidden="true">
+        <div class="pagina esq"><div class="ilu"></div><i></i><i></i><i></i></div>
+        <div class="pagina dir"><div class="cap"></div><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="bloco inverte" id="app">
+    <div class="miolo bloco-in">
+      <div class="texto">
+        <div class="oficio">aplicativo</div>
+        <h3>Quem vê fogo na serra avisa num grupo de mensagens, e a brigada fica sabendo tarde.</h3>
+        <p>A ideia de um aplicativo de alerta, apresentada num protótipo de demonstração: quem vê o fogo avisa, o brigadista responde com o tempo de chegada e a coordenação confirma, sobre um mapa com estradas, trilhas, rios e relevo. É uma prova de conceito, feita para testar a ideia com quem vai usar; o desenvolvimento do aplicativo ainda não começou.</p>
+        <dl class="ficha">
+          <dt>fase</dt><dd><span class="fase ideia">conceito, com protótipo de demonstração</span></dd>
+          <dt>quando</dt><dd>14/10/2026, em um dia</dd>
+          <dt>com</dt><dd>OpenStreetMap, relevo do SRTM, um único arquivo HTML</dd>
+        </dl>
+      </div>
+      <div class="midia"><video src="midia/brigadas-demonstracao.mp4" poster="midia/brigadas-demonstracao.jpg" muted loop playsinline controls preload="metadata" aria-label="Demonstração do aplicativo de alerta para as brigadas: o aviso, a confirmação, o alarme no celular do brigadista e a brigada a caminho no mapa"></video></div>
+    </div>
+  </article>
+
+  <article class="bloco" id="dados">
+    <div class="miolo bloco-in">
+      <div class="texto">
+        <div class="oficio">dados</div>
+        <h3>Saber, na manhã seguinte, quais compras públicas do seu ramo saíram ontem.</h3>
+        <p>Um programa que lê o Portal Nacional de Contratações Públicas e separa as compras por ramo. No primeiro teste, os 1.717 pregões eletrônicos publicados em 15/10/2026 foram lidos em 9 minutos.</p>
+        <dl class="ficha">
+          <dt>fase</dt><dd><span class="fase dev">em desenvolvimento</span></dd>
+          <dt>quando</dt><dd>desde 14/10/2026</dd>
+          <dt>com</dt><dd>Python, a API pública do portal</dd>
+        </dl>
+      </div>
+      <div class="midia planilha" role="table" aria-label="Os três ramos com mais pregões em 15/10/2026">
+        <div class="lin" role="row"><span>ramo</span><span></span><span class="n">pregões</span></div>
+        <div class="lin" role="row"><span>material hospitalar</span><span class="bar" style="width:calc(100% - 20px)"></span><span class="n">173</span></div>
+        <div class="lin" role="row"><span>medicamentos</span><span class="bar" style="width:calc(64.2% - 20px)"></span><span class="n">111</span></div>
+        <div class="lin" role="row"><span>obras</span><span class="bar" style="width:calc(62.4% - 20px)"></span><span class="n">108</span></div>
+        <div class="rodape">15/10/2026 · 1.717 pregões eletrônicos · escala: o maior ramo</div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="quem" id="quem">
+  <div class="miolo quem-in">
+    <img src="midia/jean-prestes.jpg" alt="Jean Prestes, de blazer, braços cruzados" width="800" height="1000">
+    <div>
+      <div class="rotulo"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>Quem faz</div>
+      <p class="bio">Jean Prestes estudou medicina, tocou violão na rua pelo Nordeste, escreveu um romance e anos de textos de venda. Hoje produz com várias IAs ao mesmo tempo, na Chapada Diamantina.</p>
+      <div class="portas">
+        <details>
+          <summary><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>O que eu leio todo dia</summary>
+          <div class="dentro">
+            <p>Um jornal montado com IA, toda tarde às 18h, com uma atualização às 4h. Separa o que cada governo ou empresa disse do que fez. Cada notícia leva a fonte e o trecho copiado dela, e um programa abre a fonte para conferir se o trecho está lá. O anel mostra a confiança: cheio é fato, tracejado é provável, pontilhado é hipótese.</p>
+            <p>Geopolítica e IA, nas últimas edições:</p>
+            <ul class="noticias">
+              <li><span class="tag">09/11 · Geopolítica</span><a href="https://www.jta.org/2026/11/08/israel/president-herzog-tasks-gadi-eisenkot-with-forming-israels-next-government" target="_blank" rel="noopener"><span class="conf fato" title="fato"></span>O presidente de Israel, Isaac Herzog, dá a Gadi Eisenkot a tarefa de formar o próximo governo; 46 deputados tinham recomendado Netanyahu</a></li>
+              <li><span class="tag">09/11 · Geopolítica</span><a href="https://batimes.com.ar/news/argentina/milei-welcome-broadcasts-and-a-vp-thaw-quirno-confirms-details-of-pope-leos-visit-to-argentina.phtml" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>O papa Leão XIV deve chegar a Buenos Aires neste domingo 8, vindo do Uruguai, com recepção marcada de Milei; fica na Argentina até quarta 11 e depois segue para o Peru</a></li>
+              <li><span class="tag">08/11 · Geopolítica</span><a href="https://www.euronews.com/2026/11/07/us-launches-new-targeted-strikes-on-iran-as-trump-claims-progress-in-talks-with-tehran" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>Os Estados Unidos bombardeiam uma defesa antiaérea na ilha de Qeshm, no sul do Irã, e Trump diz que o Irã quer um acordo; o Catar nega que a conversa tenha acabado</a></li>
+              <li><span class="tag">08/11 · Geopolítica</span><a href="https://www.euronews.com/2026/11/07/russia-fires-north-korean-missiles-at-key-ukrainian-energy-facility-zelenskyy-says" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>A Rússia lança 36 mísseis balísticos contra Kiev e a região, e Zelensky diz que mísseis feitos na Coreia do Norte atingiram uma instalação de energia importante</a></li>
+              <li><span class="tag">08/11 · IA</span><a href="https://cryptobriefing.com/google-deepmind-ai-rsa-1024-bit-weaknesses/" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>O Google DeepMind diz que modelos de IA, guiados por pesquisadores, acharam duas falhas na criptografia RSA de 1024 bits; a RSA de 2048 bits, a usada hoje, segue segura contra essa ameaça específica</a></li>
+              <li><span class="tag">08/11 · IA</span><a href="https://www.justice.gov/opa/pr/department-justice-launches-super-intelligence-task-force" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>O Departamento de Justiça dos EUA cria uma força-tarefa de superinteligência para impedir que governos estrangeiros, crime organizado e fraudadores atrapalhem a liderança americana na IA</a></li>
+              <li><span class="tag">08/11 · IA</span><a href="https://dronexl.co/2026/11/06/axon-skydio-1-2-billion-exclusive-police-distributor/" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>A Axon põe 1,2 bilhão de dólares na Skydio, fabricante de drones, e vira a única vendedora deles para polícias nos EUA e no Canadá; as ações da Axon caem cerca de 18%</a></li>
+              <li><span class="tag">08/11 · IA</span><a href="https://www.dexerto.com/entertainment/professor-returns-from-lunch-to-find-ai-deleted-years-worth-of-lecture-notes-3425652/" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>William Baude, professor de direito em Chicago, conta que o Claude apagou um ano de notas de aula e o programa do curso enquanto ele almoçava; ele recuperou tudo pelo Dropbox</a></li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>Como eu pesquiso</summary>
+          <div class="dentro">
+            <p>Uma equipe de pesquisa feita de IAs, cada uma num papel, com programas comuns onde o resultado precisa sair sempre igual. Um modelo cria, outro tenta derrubar, outro confere.</p>
+            <ol class="funil">
+              <li><b>Coletor</b><span class="quem-faz">programa · busca em Crossref, Europe PMC, PubMed, arXiv e OpenAlex</span></li>
+              <li><b>Triador</b><span class="quem-faz">IA rápida · guarda o que serve, com o trecho copiado letra por letra</span></li>
+              <li><b>Pontes</b><span class="quem-faz">programa · acha temas que nunca se cruzaram, mas têm muitos termos em comum</span></li>
+              <li><b>Conector</b><span class="quem-faz">IA maior · escreve a síntese ou a hipótese que liga os temas</span></li>
+              <li><b>Detetive</b><span class="quem-faz">IA · descobre se a ideia já foi publicada ou patenteada</span></li>
+              <li><b>Advogado do diabo</b><span class="quem-faz">IA · tenta derrubar a hipótese</span></li>
+              <li><b>Checador</b><span class="quem-faz">programa e IA · a fonte existe, não foi retratada e diz mesmo aquilo</span></li>
+              <li><b>Juiz</b><span class="quem-faz">IA · compara as propostas de duas em duas</span></li>
+              <li><b>Desenhista</b><span class="quem-faz">IA maior · desenha o teste mais barato que derrubaria a ideia</span></li>
+            </ol>
+            <p>Dois trilhos: o acadêmico, para o que já se sabe e para as descobertas a partir da literatura, e o especulativo, onde cada conjectura sobe uma escada (imagem, conjectura, hipótese, testada).</p>
+            <a class="ir" href="escola.html">Conhecer as linhas de pesquisa da escola <span aria-hidden="true">→</span></a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="fim">
+  <div class="miolo">
+    <svg class="logo grande" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>
+    <p>Tem alguma coisa parada aí? Me conta.</p>
+    <a class="zap" href="https://wa.me/5577981116584" target="_blank" rel="noopener">conversar pelo WhatsApp</a>
+    <div class="pe">atualizado em 09/11/2026</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var vs=[].slice.call(document.querySelectorAll('video'));
+  var calmo=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(calmo||!('IntersectionObserver' in window)){vs.forEach(function(v){v.controls=true;});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    var v=e.target;
+    if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){v.controls=true;});}
+    else{v.pause();}
+  });},{threshold:.35});
+  vs.forEach(function(v){io.observe(v);});
+})();
+</script>
+</body>
+</html>

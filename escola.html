@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escola · Jean Prestes</title>
+<meta name="description" content="As linhas de pesquisa da escola de Jean Prestes, feita com uma equipe de IAs.">
+<meta name="theme-color" content="#05060B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23099268' stroke-width='3.2' stroke-linecap='round' stroke-dasharray='58 12' transform='rotate(-70 16 16)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vazio:#05060B; --sup:#0C0E18; --sup2:#131628; --linha:#1E2238;
+  --texto:#E6E8F0; --apagado:#8A90A6; --verde:#099268; --verde-claro:#0BAA7A;
+  --titulo:'Syne',system-ui,sans-serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--vazio);color:var(--texto);font-family:var(--sans);font-size:17px;line-height:1.6;position:relative;overflow-x:hidden}
+/* o cosmo: poucas estrelas, só CSS */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.55;
+  background-image:
+   radial-gradient(1px 1px at 12% 18%,#fff 50%,transparent 51%),
+   radial-gradient(1px 1px at 78% 9%,#cfd6ff 50%,transparent 51%),
+   radial-gradient(1.5px 1.5px at 64% 42%,#fff 50%,transparent 51%),
+   radial-gradient(1px 1px at 33% 71%,#dfe4ff 50%,transparent 51%),
+   radial-gradient(1px 1px at 88% 66%,#fff 50%,transparent 51%),
+   radial-gradient(1px 1px at 22% 92%,#cfd6ff 50%,transparent 51%),
+   radial-gradient(1.5px 1.5px at 92% 31%,#fff 50%,transparent 51%),
+   radial-gradient(1px 1px at 47% 24%,#fff 50%,transparent 51%)}
+body>*{position:relative;z-index:1}
+a{color:var(--verde-claro);text-underline-offset:3px}
+img,video,svg{display:block;max-width:100%}
+.miolo{max-width:1120px;margin:0 auto;padding:0 16px}
+
+/* a logo: o círculo verde aberto */
+.logo,.anel{fill:none;stroke:var(--verde);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:58 12;transform:rotate(-70deg);transform-origin:50% 50%;transition:stroke-dasharray .25s ease}
+.anel{width:14px;height:14px;flex:none}
+
+/* barra */
+.barra{position:sticky;top:0;z-index:5;background:rgba(5,6,11,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+.barra-in{display:flex;align-items:center;justify-content:space-between;gap:12px;height:58px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--texto);min-width:0}
+.marca .logo{width:26px;height:26px;flex:none}
+.marca:hover .logo{stroke-dasharray:50 20}
+.nome{font-family:var(--titulo);font-weight:600;font-size:17px;white-space:nowrap}
+.papel{font-family:var(--mono);font-size:12px;color:var(--apagado);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barra-zap{font-family:var(--mono);font-size:13px;text-decoration:none;border:1px solid var(--verde);color:var(--verde-claro);padding:6px 12px;border-radius:999px;white-space:nowrap}
+.barra-zap:hover{background:var(--verde);color:#fff}
+
+.rotulo{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--verde-claro)}
+
+/* 1. contexto */
+.contexto{padding:88px 0 72px}
+.contexto h1{font-family:var(--titulo);font-weight:600;font-size:clamp(30px,4.6vw,56px);line-height:1.08;letter-spacing:-.01em;max-width:18em;margin-top:22px}
+.dados{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
+.dado{background:var(--sup);border:1px solid var(--linha);border-radius:14px;padding:22px 22px 24px}
+.dado strong{display:block;font-family:var(--titulo);font-weight:600;font-size:clamp(34px,4vw,48px);line-height:1;color:var(--verde-claro);margin-bottom:14px;white-space:nowrap}
+.dado strong i{font-style:normal;color:var(--apagado);font-size:.6em;vertical-align:.15em}
+.dado span{color:var(--texto);font-size:16px}
+.fonte{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--apagado)}
+.texto-corrido{max-width:44em;margin-top:44px}
+.texto-corrido p{font-size:clamp(18px,1.9vw,20px);line-height:1.62}
+.texto-corrido p+p{margin-top:18px}
+
+/* 2. produções */
+.producoes{padding:24px 0 24px;border-top:1px solid var(--linha)}
+.producoes>.miolo{padding-top:64px}
+.titulo-sec{font-family:var(--titulo);font-weight:500;font-size:clamp(24px,3vw,34px);line-height:1.2;max-width:24em;margin-top:18px}
+.portais{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.portais a{font-family:var(--mono);font-size:13px;color:var(--texto);text-decoration:none;border:1px solid var(--linha);border-radius:999px;padding:8px 16px;transition:border-color .2s}
+.portais a:hover{border-color:var(--verde)}
+
+.bloco{padding:56px 0}
+.bloco+.bloco{border-top:1px solid var(--linha)}
+.bloco-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:48px;align-items:center}
+.bloco.inverte .texto{order:2}
+.oficio{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--verde-claro);border:1px solid var(--verde);border-radius:999px;padding:3px 12px}
+.bloco h3{font-family:var(--titulo);font-weight:600;font-size:clamp(23px,2.6vw,30px);line-height:1.2;margin:16px 0 14px}
+.bloco p{color:var(--texto)}
+.ficha{margin-top:20px;font-family:var(--mono);font-size:13px;line-height:1.6;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;color:var(--apagado)}
+.ficha dd{color:var(--texto)}
+.fase{display:inline-block;border-radius:999px;padding:1px 10px;margin-right:8px;font-size:12px}
+.fase.ok{background:var(--verde);color:#fff}
+.fase.dev{border:1px solid var(--verde);color:var(--verde-claro)}
+.fase.ideia{border:1px dashed var(--apagado);color:var(--texto)}
+.midia{background:var(--sup);border:1px solid var(--linha);border-radius:16px;overflow:hidden}
+.midia video{width:100%;height:auto;background:#000}
+.celulares{display:flex;align-items:center;background:#14161b}
+.celulares video{background:#14161b}
+.celulares .largo{flex:2.44;min-width:0}
+.celulares .estreito{flex:1;min-width:0}
+.livro{display:flex;justify-content:center;gap:0;padding:34px 20px;perspective:1400px}
+.pagina{width:44%;max-width:230px;aspect-ratio:2/3;background:#ECEBE6;padding:9% 8%;display:flex;flex-direction:column;gap:7px;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.pagina.esq{transform:rotateY(8deg);transform-origin:right;border-right:1px solid #cfccc3}
+.pagina.dir{transform:rotateY(-8deg);transform-origin:left}
+.pagina i{display:block;height:5px;background:#c9c6bd;border-radius:3px}
+.pagina i:nth-child(5n){width:72%}
+.pagina i:nth-child(7n){width:86%}
+.pagina .ilu{flex:1;min-height:40%;border-radius:2px;margin-bottom:6px;background:repeating-linear-gradient(135deg,rgba(9,146,104,.55) 0 2px,transparent 2px 7px)}
+.pagina .cap{height:9px;width:50%;background:var(--verde);opacity:.7;margin-bottom:6px}
+.planilha{font-family:var(--mono);font-size:13px}
+.planilha .lin{display:grid;grid-template-columns:150px 1fr 84px;align-items:center;border-top:1px solid var(--linha);min-height:40px}
+.planilha .lin:first-child{border-top:0;background:var(--sup2);color:var(--apagado)}
+.planilha .lin>*{padding:6px 12px}
+.planilha .bar{height:12px;background:var(--verde);padding:0;margin:0 10px;border-radius:2px}
+.planilha .n{text-align:right}
+.planilha .rodape{padding:10px 12px;border-top:1px solid var(--linha);color:var(--apagado);font-size:12px}
+
+/* 3. no ar */
+.noar{padding:72px 0;border-top:1px solid var(--linha)}
+.manchetes{list-style:none;margin-top:24px}
+.manchetes li{display:grid;grid-template-columns:120px 1fr auto;gap:18px;align-items:baseline;padding:18px 0;border-top:1px solid var(--linha)}
+.manchetes li:last-child{border-bottom:1px solid var(--linha)}
+.manchetes time{font-family:var(--mono);font-size:13px;color:var(--apagado)}
+.manchetes .h{font-family:var(--titulo);font-weight:500;font-size:clamp(18px,2vw,22px);line-height:1.3}
+.manchetes a{font-family:var(--mono);font-size:13px;white-space:nowrap;text-decoration:none}
+.manchetes a:hover{text-decoration:underline}
+
+/* 4. quem */
+.quem{padding:72px 0;border-top:1px solid var(--linha)}
+.quem-in{display:grid;grid-template-columns:240px 1fr;gap:44px;align-items:start}
+.quem img{width:240px;height:auto;aspect-ratio:4/5;object-fit:cover;filter:grayscale(1) contrast(1.05);border-radius:16px}
+.bio{font-size:clamp(19px,2vw,22px);line-height:1.5;margin-top:16px;max-width:30em}
+.portas{margin-top:30px;display:grid;gap:12px}
+details{border:1px solid var(--linha);border-radius:14px;background:var(--sup)}
+details[open]{background:var(--sup2)}
+summary{cursor:pointer;list-style:none;padding:16px 18px;font-family:var(--mono);font-size:14px;display:flex;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-left:auto;font-size:18px;line-height:1;color:var(--verde-claro)}
+details[open] summary::after{content:"−"}
+summary:hover .anel,details[open] summary .anel{stroke-dasharray:50 20}
+.dentro{padding:4px 18px 22px;font-size:16px}
+.dentro p+p,.dentro p+ol,.dentro ol+p{margin-top:12px}
+.noticias{list-style:none;margin-top:12px}
+.noticias li{padding:10px 0;border-top:1px solid var(--linha);display:grid;grid-template-columns:110px 1fr;gap:12px}
+.noticias .tag{font-family:var(--mono);font-size:12px;color:var(--apagado)}
+.noticias a{color:var(--texto);text-decoration:none}
+.noticias a:hover{color:var(--verde-claro)}
+.conf{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:8px;vertical-align:-1px;border:1.5px solid var(--verde-claro)}
+.conf.fato{background:var(--verde-claro)}
+.conf.provavel{border-style:dashed}
+.conf.hipotese{border-style:dotted}
+.funil{list-style:none;margin-top:14px;counter-reset:f}
+.funil li{counter-increment:f;display:grid;grid-template-columns:28px 160px 1fr;gap:10px;padding:9px 0;border-top:1px solid var(--linha);font-size:15px}
+.funil li::before{content:counter(f);font-family:var(--mono);font-size:12px;color:var(--verde-claro);padding-top:2px}
+.funil b{font-weight:500}
+.funil .quem-faz{font-family:var(--mono);font-size:12px;color:var(--apagado);padding-top:2px}
+.ir{display:inline-flex;gap:8px;margin-top:18px;font-family:var(--mono);font-size:14px;color:#fff;background:var(--verde);text-decoration:none;padding:11px 18px;border-radius:999px}
+.ir:hover{background:var(--verde-claro)}
+
+/* fim */
+.fim{border-top:1px solid var(--linha);padding:80px 0 40px;background:radial-gradient(60% 80% at 50% 0%,rgba(9,146,104,.12),transparent 70%)}
+.fim .logo.grande{width:56px;height:56px}
+.fim p{font-family:var(--titulo);font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1.15;margin-top:22px;max-width:16em}
+.zap{display:inline-block;margin-top:28px;font-family:var(--mono);font-size:15px;background:var(--verde);color:#fff;text-decoration:none;padding:14px 24px;border-radius:999px}
+.zap:hover{background:var(--verde-claro)}
+.pe{margin-top:60px;font-family:var(--mono);font-size:11px;color:var(--apagado)}
+
+/* escola */
+.voltar{font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--texto);display:inline-flex;align-items:center;gap:10px;border:1px solid var(--linha);border-radius:999px;padding:6px 14px 6px 8px}
+.voltar:hover{border-color:var(--verde)}
+.esc-topo{padding:72px 0 40px}
+.esc-topo h1{font-family:var(--titulo);font-weight:600;font-size:clamp(34px,5vw,60px);line-height:1.05;margin-top:20px}
+.esc-topo p{font-size:clamp(18px,1.9vw,20px);max-width:40em;margin-top:20px}
+.premissa{margin-top:32px;border:1px solid var(--verde);border-radius:16px;padding:22px 24px;max-width:46em;background:rgba(9,146,104,.07)}
+.premissa b{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--verde-claro);display:block;margin-bottom:8px}
+.depto{padding:48px 0;border-top:1px solid var(--linha)}
+.depto h2{font-family:var(--titulo);font-weight:600;font-size:clamp(24px,2.8vw,32px);margin-top:14px}
+.depto>.miolo>p{color:var(--apagado);margin-top:6px;max-width:40em}
+.fichas{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:24px}
+.ficha-cat{background:var(--sup);border:1px solid var(--linha);border-radius:14px;padding:18px 18px 34px;position:relative}
+.ficha-cat::after{content:"";position:absolute;left:50%;bottom:12px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;border:1px solid var(--linha)}
+.ficha-cat .cod{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;color:var(--verde-claro)}
+.ficha-cat .sit{color:var(--apagado);border:1px solid var(--linha);border-radius:999px;padding:0 8px;white-space:nowrap}
+.ficha-cat .sit.curso{border-color:var(--verde);color:var(--verde-claro)}
+.ficha-cat h3{font-family:var(--sans);font-weight:500;font-size:17px;line-height:1.35;margin:12px 0 6px;padding-top:10px;border-top:3px double var(--linha)}
+.ficha-cat p{font-size:15px;color:var(--apagado)}
+.ficha-cat.rascunho{border-style:dashed;background:repeating-linear-gradient(0deg,transparent 0 23px,rgba(138,144,166,.08) 23px 24px),repeating-linear-gradient(90deg,transparent 0 23px,rgba(138,144,166,.08) 23px 24px),var(--sup)}
+
+@media (max-width:860px){
+  .dados{grid-template-columns:1fr}
+  .bloco{padding:44px 0}
+  .bloco-in{grid-template-columns:1fr;gap:26px}
+  .bloco.inverte .texto{order:0}
+  .quem-in{grid-template-columns:1fr;gap:24px}
+  .quem img{width:180px}
+  .manchetes li{grid-template-columns:1fr;gap:4px}
+  .funil li{grid-template-columns:24px 1fr}
+  .funil li .quem-faz{grid-column:2}
+  .planilha .lin{grid-template-columns:116px 1fr 76px}
+  .noticias li{grid-template-columns:1fr;gap:2px}
+  .papel{display:none}
+  .contexto{padding:56px 0 52px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.logo,.anel,.portais a{transition:none}}
+
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="miolo barra-in">
+    <a class="voltar" href="index.html#quem"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>voltar</a>
+    <a class="barra-zap" href="https://wa.me/5577981116584" target="_blank" rel="noopener">conversar</a>
+  </div>
+</header>
+
+<main>
+<section class="esc-topo">
+  <div class="miolo">
+    <div class="rotulo"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>Linhas de pesquisa</div>
+    <h1>A escola</h1>
+    <p>Uma escola de pesquisa própria, com duas partes. Na pesquisa, uma equipe de IAs lê, cruza e confere o que já foi publicado. No estudo, eu aprendo o que o trabalho pede. A grade tem departamentos e matérias, e cada matéria mostra em que pé está.</p>
+    <div class="premissa">
+      <b>A premissa</b>
+      E se a psicologia de Carl Jung estiver certa? As ideias dele entram como ponto de partida, aceitas como verdadeiras, e todo o resto passa pelo método científico.
+    </div>
+  </div>
+</section>
+
+<section class="depto">
+  <div class="miolo">
+    <div class="rotulo"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>MET</div>
+    <h2>Metaciência e Descoberta</h2>
+    <p>Como o conhecimento novo nasce de pesquisas que já existem, e como fazer isso com método.</p>
+    <div class="fichas">
+      <div class="ficha-cat"><div class="cod"><span>MET 101</span><span class="sit curso">em curso</span></div><h3>Descoberta Baseada em Literatura</h3><p>Achar conhecimento que já foi publicado, mas em pedaços que ninguém juntou. A ideia vem de Don Swanson, que em 1986 ligou o óleo de peixe à síndrome de Raynaud.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>MET 101.1</span><span class="sit curso">em curso</span></div><h3>Os tipos de associação</h3><p>Seis tipos de associação entre pesquisas publicadas que podem gerar hipóteses novas, e como achar, validar e usar cada um.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>MET 101.2</span><span class="sit curso">em curso</span></div><h3>Laboratório da máquina do tempo</h3><p>A equipe tenta chegar a descobertas que já aconteceram, lendo só o que estava publicado antes delas. É o jeito de medir se o método acerta.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>MET 102</span><span class="sit">cursada</span></div><h3>Ferramentas de pesquisa por associação</h3><p>O que já existe pronto para pesquisar por associação e o que usar em cada papel da equipe.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>MET 103</span><span class="sit">matriculada</span></div><h3>Métodos além do científico convencional</h3><p>Que outros jeitos de conhecer existem, o que cada um consegue mostrar e onde cada um falha.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>MET 104</span><span class="sit">pesquisada</span></div><h3>Sincronização de Conhecimentos</h3><p>O que já existe de parecido com um método próprio de juntar saberes de áreas diferentes, o que produziu e onde falhou.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="depto">
+  <div class="miolo">
+    <div class="rotulo"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>PSA</div>
+    <h2>Psicologia Analítica</h2>
+    <p>A psicologia de Jung como lente de pesquisa.</p>
+    <div class="fichas">
+      <div class="ficha-cat"><div class="cod"><span>PSA 101</span><span class="sit curso">em curso</span></div><h3>A movimentação dos arquétipos ao longo da História</h3><p>Se os arquétipos ganham e perdem força com o tempo, e se isso deixa marca na História humana.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>PSA 101.2</span><span class="sit curso">em curso</span></div><h3>Contar arquétipos nos contos de Berezkin</h3><p>Oito arquétipos contados às cegas nos 2.564 motivos de contos do catálogo de Yuri Berezkin, com a régua de acerto fixada antes.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>PSA 102</span><span class="sit">matriculada</span></div><h3>Imaginação Ativa como método científico</h3><p>Se a investigação de dentro, com imaginação ativa, meditação e sonhos, pode virar método aberto ao escrutínio de outras pessoas.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>PSA 103</span><span class="sit">revisão parcial</span></div><h3>A Química da Psicologia</h3><p>Quem já tentou ler a psique com os conceitos da química, e o que Jung e o físico Wolfgang Pauli disseram sobre psique e matéria.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>PSA 104</span><span class="sit">revisão</span></div><h3>Psico-história hoje</h3><p>O que existe de concreto sobre prever o rumo das sociedades: cliodinâmica, previsão de conflitos e ciência social computacional.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="depto">
+  <div class="miolo">
+    <div class="rotulo"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>ECO</div>
+    <h2>Economia e Organismo</h2>
+    <p>A economia e a sociedade lidas pelo funcionamento do corpo e dos seres vivos.</p>
+    <div class="fichas">
+      <div class="ficha-cat"><div class="cod"><span>ECO 101</span><span class="sit curso">em curso</span></div><h3>O corpo como modelo da economia</h3><p>Quem já comparou o corpo humano à economia e à sociedade, o que propôs, o que deu certo e o que deu errado.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>ECO 101.1</span><span class="sit curso">em curso</span></div><h3>Células, defesa, câncer e a Biocracia</h3><p>Células, sistema imune, microbiota e câncer como modelo da sociedade, e a Biocracia de Walter Cannon, o fisiologista da homeostase.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>associação livre</span></div><h3>Economia Homeostática</h3><p>Um modelo econômico e social tirado do jeito como o corpo se regula, e como ele poderia existir fora do papel.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>associação livre</span></div><h3>Malha digital e malha humana</h3><p>A rede digital vista de cima, ao lado da sociedade humana, com a economia dos bits e a dos tokens.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="depto">
+  <div class="miolo">
+    <div class="rotulo"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>Ateliê</div>
+    <h2>O trilho especulativo</h2>
+    <p>Separado do acadêmico para os dois nunca se confundirem. Cada conjectura sobe uma escada: imagem, conjectura, hipótese, testada.</p>
+    <div class="fichas">
+      <div class="ficha-cat rascunho"><div class="cod"><span>AT 101.1</span></div><h3>Psico-história arquetípica</h3></div>
+      <div class="ficha-cat rascunho"><div class="cod"><span>AT 101.2</span></div><h3>Heróis, vilões e viradas autoritárias</h3></div>
+      <div class="ficha-cat rascunho"><div class="cod"><span>AT 101.3</span></div><h3>O castigo do engano nos contos de povos com e sem classes</h3></div>
+      <div class="ficha-cat rascunho"><div class="cod"><span>AT 102</span></div><h3>Sincronização de Conhecimentos, o método</h3></div>
+      <div class="ficha-cat rascunho"><div class="cod"><span>AT 103</span></div><h3>A Química da Psicologia</h3></div>
+      <div class="ficha-cat rascunho"><div class="cod"><span>AT 104</span></div><h3>Um inconsciente coletivo para as IAs</h3></div>
+    </div>
+  </div>
+</section>
+
+<section class="depto">
+  <div class="miolo">
+    <div class="rotulo"><svg class="anel" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>Estudo</div>
+    <h2>O que eu estudo</h2>
+    <p>A parte da escola em que quem aprende sou eu.</p>
+    <div class="fichas">
+      <div class="ficha-cat"><div class="cod"><span>tema</span></div><h3>Desenvolvimento de software com IA</h3><p>Coordenar bem a construção de programas feitos com IA.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>tema</span></div><h3>Robótica</h3><p>Software, IA e eletrônica para criar objetos inteligentes.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>disciplina</span></div><h3>Matemática</h3><p>Começando pela geometria algébrica: cada equação num eixo.</p></div>
+      <div class="ficha-cat"><div class="cod"><span>disciplina</span></div><h3>Imaginação Ativa</h3><p>A técnica de Jung, com os riscos, as orientações e a prática pela escrita.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="fim">
+  <div class="miolo">
+    <svg class="logo grande" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/></svg>
+    <p>Quer conversar sobre alguma dessas linhas?</p>
+    <a class="zap" href="https://wa.me/5577981116584" target="_blank" rel="noopener">conversar pelo WhatsApp</a>
+    <div class="pe">atualizado em 09/11/2026</div>
+  </div>
+</footer>
+</body>
+</html>
