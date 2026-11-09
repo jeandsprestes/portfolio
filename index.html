@@ -211,6 +211,9 @@ summary:hover .anel,details[open] summary .anel{stroke-dasharray:50 20}
 .redes-sociais a:hover{border-color:var(--verde)}
 .redes-sociais .rs-principal{background:var(--verde);border-color:var(--verde);color:#fff;font-size:16px;padding:12px 24px}
 .redes-sociais .rs-principal:hover{background:var(--verde-claro)}
+.capa-livro{padding:22px}
+.capa-livro img{width:170px}
+@media (max-width:860px){.capa-livro img{width:150px}}
 
 </style>
 </head>
@@ -251,8 +254,9 @@ summary:hover .anel,details[open] summary .anel{stroke-dasharray:50 20}
     <p class="fonte">Fontes: <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener">AI Index 2026, Universidade Stanford</a> (os dois primeiros números; o teste dos agentes se chama OSWorld) e <a href="https://arxiv.org/abs/2503.14499" target="_blank" rel="noopener">METR, 2025</a> (o terceiro).</p>
 
     <div class="texto-corrido">
-      <p>Ela ainda erra, e o erro de uma IA costuma parecer certo para quem não conhece a área. Quem coordena várias IAs num projeto escolhe a ferramenta de cada etapa, divide o trabalho entre os modelos e percebe quando um deles errou no assunto que está sendo feito. Num mesmo mês, esse assunto pode ser educação, saúde, turismo ou finanças.</p>
-      <p>Por isso esse trabalho rende mais nas mãos de quem já passou por muitos ofícios. A escritora Emilie Wapnick chamou essas pessoas de multipotenciais, numa palestra TED de 2015, e apontou três forças que elas costumam ter: juntar ideias de áreas distantes, aprender rápido e se adaptar. Quando as IAs assumem a parte repetida de cada ofício, pesa mais em quantos ofícios a pessoa sabe reconhecer um trabalho bem feito.</p>
+      <p>A cada versão, os modelos acertam mais, e cada um acerta melhor numa coisa: um escreve, outro desenha, outro programa, outro lê planilhas. O trabalho humano passa a ser coordenar esses acertos: decidir o que cada IA faz, em que ordem, e juntar as partes num resultado que sirva a quem vai usar.</p>
+      <p>Esse trabalho rende mais nas mãos de quem já passou por muitos ofícios. A escritora Emilie Wapnick chamou essas pessoas de multipotenciais, numa palestra TED de 2015, e apontou três forças que elas costumam ter: juntar ideias de áreas distantes, aprender rápido e se adaptar.</p>
+      <p>Num negócio de poucas pessoas, essa combinação pesa mais. Uma pousada precisa de fotos, posts, site e resposta rápida aos hóspedes. Um consultório precisa de conteúdo, agenda organizada e material para os pacientes. Uma escola pequena precisa de material didático e de conversa com as famílias, e um produtor cultural precisa de projeto para edital, divulgação e prestação de contas. Antes, cada frente pedia uma pessoa ou uma agência. Um profissional multipotencial, coordenando várias IAs, cuida de boa parte delas ao mesmo tempo.</p>
     </div>
   </div>
 </section>
@@ -310,7 +314,7 @@ summary:hover .anel,details[open] summary .anel{stroke-dasharray:50 20}
           <dt>com</dt><dd>Python para o PDF e o EPUB, Cloudflare Pages</dd>
         </dl>
       </div>
-      <a class="midia capa-livro" href="https://entre-orquideas-e-robos.pages.dev/" target="_blank" rel="noopener"><img src="midia/livro-entre-orquideas-e-robos.jpg" alt="Capa do livro Entre Orquídeas e Robôs, de Paulo Pontes: um coração mecânico ligado por cabos, sobre números binários" width="600" height="960" loading="lazy"></a>
+      <a class="midia capa-livro" href="https://entre-orquideas-e-robos.pages.dev/" target="_blank" rel="noopener"><img src="midia/livro-entre-orquideas-e-robos.jpg" alt="Capa do livro Entre Orquídeas e Robôs, de Paulo Pontes: um coração mecânico ligado por cabos, sobre números binários" width="600" height="960"></a>
     </div>
   </article>
 
@@ -371,14 +375,14 @@ summary:hover .anel,details[open] summary .anel{stroke-dasharray:50 20}
             <p>Um jornal montado com IA, toda tarde às 18h, com uma atualização às 4h. Separa o que cada governo ou empresa disse do que fez. Cada notícia leva a fonte e o trecho copiado dela, e um programa abre a fonte para conferir se o trecho está lá. O anel mostra a confiança: cheio é fato, tracejado é provável, pontilhado é hipótese.</p>
             <p>Geopolítica e IA, nas últimas edições:</p>
             <ul class="noticias">
+              <li><span class="tag">10/11 · Geopolítica</span><a href="https://www.moroccoworldnews.com/2026/11/345639/cop31-opens-in-turkiye-with-calls-to-turn-climate-pledges-into-action/" target="_blank" rel="noopener"><span class="conf fato" title="fato"></span>A COP31 abre em Antalya, na Turquia, e vai até o dia 20, sem delegação dos Estados Unidos pelo segundo ano seguido</a></li>
+              <li><span class="tag">10/11 · Geopolítica</span><a href="https://abcnews.com/International/wireStory/day-us-brokered-talks-russia-ukraine-batter-long-137968428" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>Rússia e Ucrânia têm conversa marcada em Abu Dhabi a partir desta terça, com mediação de Kushner e Witkoff, depois de uma noite de 317 drones russos e de um incêndio numa refinaria russa</a></li>
+              <li><span class="tag">10/11 · Geopolítica</span><a href="https://cnbc.com/2026/11/08/trump-iran-strikes-unlikely-talks-hormuz.html" target="_blank" rel="noopener"><span class="conf fato" title="fato"></span>Trump diz que voltar à guerra aberta com o Irã é muito improvável se Teerã assinar um acordo, enquanto os Estados Unidos criam uma força para fechar também as rotas por terra do Irã</a></li>
+              <li><span class="tag">10/11 · IA</span><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2" target="_blank" rel="noopener"><span class="conf fato" title="fato"></span>A Anthropic lança o Claude Fable 5.2 e o Claude Mythos 5.2, que ela diz serem um degrau acima do Opus 5.5 em quase tudo o que testou; o Mythos fica só para organizações aprovadas</a></li>
+              <li><span class="tag">10/11 · IA</span><a href="https://www.tokenpost.com/news/technology/51758" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>Justin Sun, fundador da TRON, diz que a computação quântica pode ameaçar a segurança das criptomoedas em um ou dois anos; os computadores quânticos de hoje ainda não quebram esses sistemas</a></li>
               <li><span class="tag">09/11 · Geopolítica</span><a href="https://www.jta.org/2026/11/08/israel/president-herzog-tasks-gadi-eisenkot-with-forming-israels-next-government" target="_blank" rel="noopener"><span class="conf fato" title="fato"></span>O presidente de Israel, Isaac Herzog, dá a Gadi Eisenkot a tarefa de formar o próximo governo; 46 deputados tinham recomendado Netanyahu</a></li>
-              <li><span class="tag">09/11 · Geopolítica</span><a href="https://batimes.com.ar/news/argentina/milei-welcome-broadcasts-and-a-vp-thaw-quirno-confirms-details-of-pope-leos-visit-to-argentina.phtml" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>O papa Leão XIV deve chegar a Buenos Aires neste domingo 8, vindo do Uruguai, com recepção marcada de Milei; fica na Argentina até quarta 11 e depois segue para o Peru</a></li>
-              <li><span class="tag">08/11 · Geopolítica</span><a href="https://www.euronews.com/2026/11/07/us-launches-new-targeted-strikes-on-iran-as-trump-claims-progress-in-talks-with-tehran" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>Os Estados Unidos bombardeiam uma defesa antiaérea na ilha de Qeshm, no sul do Irã, e Trump diz que o Irã quer um acordo; o Catar nega que a conversa tenha acabado</a></li>
-              <li><span class="tag">08/11 · Geopolítica</span><a href="https://www.euronews.com/2026/11/07/russia-fires-north-korean-missiles-at-key-ukrainian-energy-facility-zelenskyy-says" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>A Rússia lança 36 mísseis balísticos contra Kiev e a região, e Zelensky diz que mísseis feitos na Coreia do Norte atingiram uma instalação de energia importante</a></li>
               <li><span class="tag">08/11 · IA</span><a href="https://cryptobriefing.com/google-deepmind-ai-rsa-1024-bit-weaknesses/" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>O Google DeepMind diz que modelos de IA, guiados por pesquisadores, acharam duas falhas na criptografia RSA de 1024 bits; a RSA de 2048 bits, a usada hoje, segue segura contra essa ameaça específica</a></li>
               <li><span class="tag">08/11 · IA</span><a href="https://www.justice.gov/opa/pr/department-justice-launches-super-intelligence-task-force" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>O Departamento de Justiça dos EUA cria uma força-tarefa de superinteligência para impedir que governos estrangeiros, crime organizado e fraudadores atrapalhem a liderança americana na IA</a></li>
-              <li><span class="tag">08/11 · IA</span><a href="https://dronexl.co/2026/11/06/axon-skydio-1-2-billion-exclusive-police-distributor/" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>A Axon põe 1,2 bilhão de dólares na Skydio, fabricante de drones, e vira a única vendedora deles para polícias nos EUA e no Canadá; as ações da Axon caem cerca de 18%</a></li>
-              <li><span class="tag">08/11 · IA</span><a href="https://www.dexerto.com/entertainment/professor-returns-from-lunch-to-find-ai-deleted-years-worth-of-lecture-notes-3425652/" target="_blank" rel="noopener"><span class="conf provavel" title="provável"></span>William Baude, professor de direito em Chicago, conta que o Claude apagou um ano de notas de aula e o programa do curso enquanto ele almoçava; ele recuperou tudo pelo Dropbox</a></li>
             </ul>
           </div>
         </details>
