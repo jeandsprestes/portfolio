@@ -1,3 +1,3 @@
 # Jean Prestes · multiprodutor com IA
 
-https://jeanprestes.com.br/
+https://jeandsprestes.github.io/portfolio/
